@@ -1,4 +1,4 @@
-#Chrome Extension
+# Chrome Extension
 
 A lightweight Chrome Extension (Manifest V3) that provides instant dictionary definitions for selected text on any webpage. Inspired by macOS's "Look Up" feature, it's designed for speed, privacy, and a seamless user experience.
 
