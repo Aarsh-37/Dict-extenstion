@@ -1,0 +1,298 @@
+[
+  {
+    "word": "hello",
+    "phonetics": [
+      {"text": "/həˈloʊ/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hello-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "interjection",
+        "definitions": [
+          {"definition": "Used as a greeting or salutation.", "example": "Hello, how are you?"}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "world",
+    "phonetics": [
+      {"text": "/wɜːrld/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/world-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "The earth, together with all of its countries, peoples, and natural features.", "example": "The world is a beautiful place."},
+          {"definition": "A particular group of people or part of society.", "example": "the world of sport"}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "example",
+    "phonetics": [
+      {"text": "/ɪɡˈzæmpəl/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/example-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A thing characteristic of its kind or illustrating a general rule.", "example": "It's a good example of how to proceed."},
+          {"definition": "A person or thing regarded as a role model.", "example": "He sets a good example for his students."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "apple",
+    "phonetics": [
+      {"text": "/ˈæpl/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/apple-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "The round fruit of a tree of the rose family, which typically has thin red or green skin and crisp flesh.", "example": "An apple a day keeps the doctor away."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "banana",
+    "phonetics": [
+      {"text": "/bəˈnænə/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/banana-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A long curved fruit which grows in clusters and has a soft pulpy flesh and yellow skin when ripe.", "example": "He peeled a banana and ate it."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "computer",
+    "phonetics": [
+      {"text": "/kəmˈpjuːtər/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/computer-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "An electronic device for storing and processing data, typically in binary form, according to instructions given to it in a variable program.", "example": "She spent hours working on her computer."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "program",
+    "phonetics": [
+      {"text": "/ˈproʊɡræm/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/program-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A planned series of future events, items, or performances.", "example": "a program of cultural events"},
+          {"definition": "A set of instructions enabling a computer to perform a task.", "example": "She wrote a computer program."}
+        ]
+      },
+      {
+        "partOfSpeech": "verb",
+        "definitions": [
+          {"definition": "Provide (a computer or other machine) with coded instructions for the automatic performance of a particular task.", "example": "the computer is programmed to calculate the best route"}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "keyboard",
+    "phonetics": [
+      {"text": "/ˈkiːbɔːrd/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/keyboard-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A panel of keys that operate a computer or typewriter.", "example": "He typed quickly on his keyboard."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "mouse",
+    "phonetics": [
+      {"text": "/maʊs/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/mouse-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A small rodent with a pointed snout, typically a long, thin tail, and large ears.", "example": "A mouse scurried across the floor."},
+          {"definition": "A small handheld device which is moved across a flat surface to control the movement of a cursor on a computer screen.", "example": "Click the left button on your mouse."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "monitor",
+    "phonetics": [
+      {"text": "/ˈmɒnɪtər/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/monitor-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A person who observes or records something.", "example": "a school monitor"},
+          {"definition": "A screen used for displaying data from a computer or television.", "example": "The monitor showed a clear image."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "software",
+    "phonetics": [
+      {"text": "/ˈsɒftwɛər/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/software-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "The programs and other operating information used by a computer.", "example": "We need to update our software."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "hardware",
+    "phonetics": [
+      {"text": "/ˈhɑːrdwɛər/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hardware-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "Tools, implements, or other items of equipment.", "example": "He bought some new hardware for his workshop."},
+          {"definition": "The mechanical, magnetic, electronic, and electrical components making up a computer system.", "example": "The computer's hardware needs an upgrade."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "internet",
+    "phonetics": [
+      {"text": "/ˈɪntərˌnɛt/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/internet-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A global computer network providing a variety of information and communication facilities, consisting of interconnected networks using standardized communication protocols.", "example": "The internet has revolutionized communication."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "website",
+    "phonetics": [
+      {"text": "/ˈwɛbˌsaɪt/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/website-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A set of related web pages served from a single web domain.", "example": "She designed a new website."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "browser",
+    "phonetics": [
+      {"text": "/ˈbraʊzər/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/browser-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A program used to view HTML documents and access files and programs on the Internet.", "example": "He opened his web browser to search for information."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "extension",
+    "phonetics": [
+      {"text": "/ɪkˈstɛnʃən/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/extension-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "The action or process of extending something or the state of being extended.", "example": "an extension of the road network"},
+          {"definition": "A program that extends the functionality of a web browser or other application.", "example": "She installed a new browser extension."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "developer",
+    "phonetics": [
+      {"text": "/dɪˈvɛləpər/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/developer-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A person or company that creates new products, especially computer software, websites, or apps.", "example": "She works as a software developer."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "code",
+    "phonetics": [
+      {"text": "/koʊd/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/code-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "A system of words, letters, figures, or symbols used to represent others, especially for the purposes of secrecy.", "example": "The message was written in code."},
+          {"definition": "A system of computer programming instructions.", "example": "She wrote the code for the new feature."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "function",
+    "phonetics": [
+      {"text": "/ˈfʌŋkʃən/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/function-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "An activity or purpose natural to or intended for a person or thing.", "example": "the function of the heart"},
+          {"definition": "A block of organized, reusable code that is used to perform a single, related action.", "example": "This function calculates the total."}
+        ]
+      }
+    ]
+  },
+  {
+    "word": "variable",
+    "phonetics": [
+      {"text": "/ˈvɛəriəbl/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/variable-us.mp3"}
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {"definition": "An element, feature, or factor that is liable to vary or change.", "example": "The temperature is a variable."},
+          {"definition": "A data item that may take on more than one value during the runtime of a program.", "example": "Declare a variable to store the user's name."}
+        ]
+      }
+    ]
+  }
+]

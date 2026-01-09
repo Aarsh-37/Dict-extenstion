@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "QuickDefine",
+  "version": "1.0.0",
+  "description": "Instant dictionary definitions for selected text on any webpage",
+  "author": "QuickDefine Team",
+  "homepage_url": "https://github.com/yourusername/quickdefine",
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://api.dictionaryapi.dev/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "constants.js",
+        "db.js",
+        "utils.js",
+        "style.js",
+        "content.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["dictionary.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
