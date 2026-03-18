@@ -1,7 +1,64 @@
 /**
- * QuickDefine - Utility Functions
- * Reusable utility functions for the extension
+ * QuickDefine - Utility Functions & Configuration
+ * Reusable utility functions and centralized configuration for the extension
  */
+
+const QUICKDEFINE_CONFIG = {
+  // API Configuration
+  API: {
+    BASE_URL: 'https://api.dictionaryapi.dev/api/v2/entries/en',
+    TIMEOUT: 10000, // 10 seconds
+    RETRY_ATTEMPTS: 2,
+    RETRY_DELAY: 1000, // 1 second
+  },
+
+  // Selection Configuration
+  SELECTION: {
+    MAX_WORDS: 5, // Increased limit for phrases
+    DEBOUNCE_DELAY: 300, // milliseconds
+    MIN_LENGTH: 1,
+  },
+
+  // UI Configuration
+  UI: {
+    POPUP: {
+      MIN_WIDTH: 280,
+      MAX_WIDTH: 400,
+      MAX_HEIGHT: 500,
+      GAP: 8, // Gap between selection and popup
+      VIEWPORT_MARGIN: 20, // Margin from viewport edges
+      Z_INDEX: 2147483647, // Maximum z-index
+      ANIMATION_DURATION: 200, // milliseconds
+    },
+  },
+
+  // Dictionary Configuration
+  DICTIONARY: {
+    // In-Memory Cache - Layer 1
+    CACHE: {
+      MAX_SIZE: 500, // Recent 500 words in memory
+      TTL: 3600000, // 1 hour
+    },
+    // API - Layer 2
+    API_FALLBACK: {
+      ENABLED: true,
+    },
+  },
+
+  // Selectors for elements to ignore
+  IGNORE_SELECTORS: [
+    'input',
+    'textarea',
+    '[contenteditable="true"]',
+    '[role="textbox"]',
+  ],
+
+  // Keyboard shortcuts
+  KEYBOARD: {
+    ESC: 'Escape',
+    ENTER: 'Enter',
+  },
+};
 
 (function() {
   'use strict';
@@ -130,8 +187,6 @@
     };
   }
 
-
-
   /**
    * Copy text to clipboard
    * @param {string} text - Text to copy
@@ -221,47 +276,24 @@
     return 'An unexpected error occurred';
   }
 
-
   /**
-   * Dictionary Manager - 3-Layer Cache System
-   * Manages dictionary lookups across In-Memory Map, IndexedDB, and API
+   * Dictionary Manager - API-first lookup system
+   * Manages dictionary lookups using in-memory cache and API fallback
    */
   class DictionaryManager {
     constructor(config) {
       this.config = config;
-      this.hotCache = new SimpleCache(
-        config.HOT_CACHE.MAX_SIZE,
-        config.HOT_CACHE.TTL
+      this.cache = new SimpleCache(
+        config.DICTIONARY.CACHE.MAX_SIZE,
+        config.DICTIONARY.CACHE.TTL
       );
-      this.db = null; // Will be initialized when IndexedDB is available
       this.apiUrl = config.API.BASE_URL;
       this.apiTimeout = config.API.TIMEOUT;
       this.apiRetries = config.API.RETRY_ATTEMPTS;
     }
 
     /**
-     * Initialize IndexedDB connection
-     * @returns {Promise<void>}
-     */
-    async initDB() {
-      if (typeof window.QuickDefineDB === 'undefined') {
-        console.warn('QuickDefine: IndexedDB class not loaded');
-        return;
-      }
-
-      if (!this.db) {
-        this.db = new window.QuickDefineDB();
-        try {
-          await this.db.init();
-        } catch (error) {
-          console.error('QuickDefine: Failed to initialize IndexedDB', error);
-          this.db = null;
-        }
-      }
-    }
-
-    /**
-     * Get definition using 3-layer lookup system
+     * Get definition using cache and API
      * @param {string} word - Word to look up
      * @returns {Promise<Object>} Definition result
      */
@@ -269,55 +301,28 @@
       const cleanWord = word.trim().toLowerCase();
       const startTime = performance.now();
 
-      // Layer 1: Check Hot Cache (In-Memory Map)
-      const hotCacheResult = this.hotCache.get(`word_${cleanWord}`);
-      if (hotCacheResult) {
+      // Layer 1: Check In-Memory Cache
+      const cachedResult = this.cache.get(`word_${cleanWord}`);
+      if (cachedResult) {
         const time = performance.now() - startTime;
-        console.log(`QuickDefine: Found in hot cache (${time.toFixed(2)}ms)`);
-        return { data: hotCacheResult, source: 'hot_cache' };
+        console.log(`QuickDefine: Found in cache (${time.toFixed(2)}ms)`);
+        return { data: cachedResult, source: 'cache' };
       }
 
-      // Layer 2: Check IndexedDB
-      await this.initDB();
-      if (this.db) {
-        try {
-          const dbResult = await this.db.get(cleanWord);
-          if (dbResult && dbResult.data) {
-            // Store in hot cache for faster future access
-            this.hotCache.set(`word_${cleanWord}`, dbResult.data);
-            const time = performance.now() - startTime;
-            console.log(`QuickDefine: Found in IndexedDB (${time.toFixed(2)}ms)`);
-            return { data: dbResult.data, source: 'indexeddb' };
-          }
-        } catch (error) {
-          console.error('QuickDefine: IndexedDB lookup failed', error);
-        }
-      }
-
-      // Layer 3: Fetch from API
+      // Layer 2: Fetch from API
       try {
-        const apiResult = await this.fetchFromAPI(cleanWord);
-        if (apiResult.data) {
-          // Cache in both layers
-          this.hotCache.set(`word_${cleanWord}`, apiResult.data);
-          if (this.db) {
-            try {
-              await this.db.set({
-                word: cleanWord,
-                data: apiResult.data,
-              });
-            } catch (error) {
-              console.error('QuickDefine: Failed to cache in IndexedDB', error);
-            }
-          }
+        const result = await this.fetchFromAPI(cleanWord);
+        if (result.data) {
+          // Store in cache
+          this.cache.set(`word_${cleanWord}`, result.data);
           const time = performance.now() - startTime;
           console.log(`QuickDefine: Fetched from API (${time.toFixed(2)}ms)`);
-          return { ...apiResult, source: 'api' };
+          return { ...result, source: 'api' };
         }
-        return apiResult;
+        return result;
       } catch (error) {
         const time = performance.now() - startTime;
-        console.error(`QuickDefine: All lookup layers failed (${time.toFixed(2)}ms)`, error);
+        console.error(`QuickDefine: API lookup failed (${time.toFixed(2)}ms)`, error);
         return { error: 'network', message: formatErrorMessage(error) };
       }
     }
@@ -366,81 +371,10 @@
     }
 
     /**
-     * Preload dictionary entries into IndexedDB
-     * @param {Array<Object>} entries - Array of dictionary entries
-     * @param {Function} onProgress - Progress callback (current, total)
-     * @returns {Promise<void>}
+     * Clear cache
      */
-    async preloadDictionary(entries, onProgress) {
-      await this.initDB();
-      if (!this.db) {
-        throw new Error('IndexedDB not available');
-      }
-
-      const batchSize = 100;
-      const total = entries.length;
-      let processed = 0;
-
-      for (let i = 0; i < entries.length; i += batchSize) {
-        const batch = entries.slice(i, i + batchSize);
-        const formattedBatch = batch.map(entry => ({
-          word: entry.word?.trim().toLowerCase() || '',
-          data: entry.data || entry,
-        }));
-
-        await this.db.setBatch(formattedBatch);
-        processed += batch.length;
-
-        if (onProgress) {
-          onProgress(processed, total);
-        }
-
-        // Yield to prevent blocking UI
-        await new Promise(resolve => setTimeout(resolve, 0));
-      }
-    }
-
-    /**
-     * Get cache statistics
-     * @returns {Promise<Object>} Cache stats
-     */
-    async getStats() {
-      const stats = {
-        hotCache: {
-          size: this.hotCache.size(),
-          maxSize: this.config.HOT_CACHE.MAX_SIZE,
-        },
-        indexedDB: {
-          count: 0,
-          available: false,
-        },
-      };
-
-      if (this.db) {
-        try {
-          stats.indexedDB.count = await this.db.count();
-          stats.indexedDB.available = true;
-        } catch (error) {
-          console.error('QuickDefine: Failed to get IndexedDB stats', error);
-        }
-      }
-
-      return stats;
-    }
-
-    /**
-     * Clear all caches
-     * @returns {Promise<void>}
-     */
-    async clearAll() {
-      this.hotCache.clear();
-      if (this.db) {
-        try {
-          await this.db.clear();
-        } catch (error) {
-          console.error('QuickDefine: Failed to clear IndexedDB', error);
-        }
-      }
+    clearCache() {
+      this.cache.clear();
     }
   }
 
@@ -457,3 +391,4 @@
     formatErrorMessage,
   };
 })();
+

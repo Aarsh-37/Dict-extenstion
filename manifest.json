@@ -21,8 +21,6 @@
     {
       "matches": ["<all_urls>"],
       "js": [
-        "constants.js",
-        "db.js",
         "utils.js",
         "style.js",
         "content.js"
@@ -35,11 +33,5 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["dictionary.json"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  }
 }

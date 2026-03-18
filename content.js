@@ -9,7 +9,7 @@
 
   // Ensure dependencies are loaded
   if (typeof QUICKDEFINE_CONFIG === 'undefined' || typeof window.QuickDefineUtils === 'undefined') {
-    console.error('QuickDefine: Required dependencies not loaded. Ensure constants.js and utils.js are loaded first.');
+    console.error('QuickDefine: Required dependencies not loaded. Ensure utils.js is loaded first.');
     return;
   }
 
@@ -19,15 +19,7 @@
   // State management
   let currentPopup = null;
   let debounceTimer = null;
-  let dictionaryManager = null;
-
-  // Initialize Dictionary Manager with 3-layer cache system
-  if (CONFIG.DICTIONARY.INDEXEDDB.ENABLED) {
-    dictionaryManager = new DictionaryManager({
-      HOT_CACHE: CONFIG.DICTIONARY.HOT_CACHE,
-      API: CONFIG.API,
-    });
-  }
+  let dictionaryManager = new DictionaryManager(CONFIG);
 
   /**
    * Validates the selected text
