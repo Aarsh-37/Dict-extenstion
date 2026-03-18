@@ -17,24 +17,6 @@ A lightweight **Chrome Extension (Manifest V3)** that shows instant dictionary d
 
 ---
 
-## 📁 Project Structure
-
-```
-dictExtension/
-├── src/
-│   ├── utils.js        # Config, utilities, and DictionaryManager
-│   ├── style.js        # Injected CSS for the popup (Shadow DOM)
-│   ├── content.js      # Content script: selection handling and UI
-│   └── background.js   # Service worker (minimal)
-├── icons/
-│   ├── icon16.png
-│   ├── icon48.png
-│   └── icon128.png
-├── manifest.json       # Chrome Extension Manifest V3
-├── package.json
-├── .gitignore
-└── README.md
-```
 
 ---
 
@@ -78,8 +60,4 @@ dictExtension/
 | Storage    | In-Memory Cache (Map)   |
 | API        | Free Dictionary API     |
 
----
 
-## 📜 License
-
-MIT License
